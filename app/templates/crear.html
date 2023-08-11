@@ -1,0 +1,21 @@
+{% extends './layout.html' %}
+
+{% block title %} C de CRUD {% endblock %}
+
+{% block body %}
+Soy el formilario para crear un nuevo registro
+<form action="{{url_for('Insertar')}}" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <label for="">Matricula</label>
+    <input type="text" name="Matricula" required>
+    <label for="">Nombre</label>
+    <input type="text" name="Nombre" required>
+    <label for="">Grupo</label>
+    <input type="text" name="Grupo" required>
+    <label for="">Imagen</label>
+    <input type="file" name="Imagen" required accept="image/png, .jpeg, .jpg">
+    <button type="submit">
+        Guardar
+    </button>
+</form>
+{% endblock %}

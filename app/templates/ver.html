@@ -1,0 +1,53 @@
+{% extends './layout.html' %}
+
+{% block title %} R de CRUD {% endblock %}
+
+{% block body %}
+Soy la vista para leer datos
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      {{message}}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<a href="{{url_for('Crear')}}">+ Nuevo Alumno</a>
+
+{% if alumnos %}
+<table>
+    <tr>
+        <th>Editar</th>
+        <th>id</th>
+        <th>matricula</th>
+        <th>nombre</th>
+        <th>grupo</th>
+        <th>status</th>
+        <th>creado</th>
+        <th>activo</th>
+        <th>imagen</th>
+        <th>Elimnar</th>
+    </tr>
+    {% for alumno in alumnos %}
+    <tr>
+        <td><a href="{{url_for('Editar', id=alumno.0)}}">Editar</a></td>
+        <td>{{alumno.0}}</td>
+        <td>{{alumno.1}}</td>
+        <td>{{alumno.2}}</td>
+        <td>{{alumno.3}}</td>
+        <td>{{alumno.4}}</td>
+        <td>{{alumno.5}}</td>
+        <td>{{alumno.6}}</td>
+        <td><img src="{{url_for('static', filename='img/uploads/alumnos/') + alumno.7}}" alt=""></td>
+        <td><a href="{{url_for('Eliminar', id=alumno.0)}}">Eliminar</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% else %}
+
+<h1>No hay registros</h1>
+
+{% endif %}
+
+{% endblock %}
